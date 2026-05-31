@@ -1,7 +1,9 @@
-FROM python
-MAINTAINER revathi
-LABEL creating an image where python grocerries application should run
-WORKDIR Groceryapp/
-COPY app.py .
-COPY .(all files which is there in our local path) (WorkDIR_image_path)/
+FROM python:slim
+MAINTAINER "revathi"
+LABEL app="pythonapp" description="image of grocerries"
+WORKDIR /Grocery
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 123
+CMD ["python" , "app.py"]
